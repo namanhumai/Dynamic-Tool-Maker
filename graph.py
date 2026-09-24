@@ -92,7 +92,7 @@ async def create_workflow():
     def route_execution(state: GraphState):
         if state['error_trace'] == "SUCCESS":
             return END
-        if state['iterations',0] >= 3:
+        if state.get("iterations", 0) >= 3:
             return END # Failsafe limit to prevent infinite loops which can occur
         return "architect_node" # CYCLE BACK with the error trace
 
